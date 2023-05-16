@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: consulta-facil-api
+  datasource:
+    url: jdbc:mysql://${DB_HOST}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    br.com.akj: DEBUG

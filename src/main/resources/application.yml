@@ -11,3 +11,8 @@ spring:
 logging:
   level:
     br.com.akj: DEBUG
+
+### LIQUIBASE ###
+liquibase:
+  enabled: true
+  liquibase-schema: consulta-facil

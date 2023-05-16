@@ -1,0 +1,217 @@
+databaseChangeLog:
+  - changeSet:
+            id: '1'
+            author: arthur.juchem
+            changes:
+                - createTable:
+                      tableName: usuarios
+                      columns:
+                          - column:
+                                name: id
+                                type: bigint
+                                autoIncrement: true
+                                constraints:
+                                    primaryKey: true
+                                    nullable: false
+                          - column:
+                                name: login
+                                type: varchar(100)
+                                constraints:
+                                  nullable: false
+                                  unique: true
+                          - column:
+                              name: senha
+                              type: varchar(255)
+                              constraints:
+                                nullable: false
+                          - column:
+                              name: tipo
+                              type: varchar(100)
+                              constraints:
+                                nullable: false
+                          - column:
+                              name: nome
+                              type: varchar(100)
+                              constraints:
+                                nullable: false
+                          - column:
+                              name: data_cadastro
+                              type: datetime
+                              constraints:
+                                nullable: false
+                          - column:
+                              name: data_exclusao
+                              type: datetime
+                - createTable:
+                    tableName: medicos
+                    columns:
+                      - column:
+                          name: id
+                          type: bigint
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                            foreignKeyName: fk_usuario_medico
+                            references: usuarios(id)
+                      - column:
+                          name: crm
+                          type: varchar(15)
+                          constraints:
+                            nullable: false
+                            unique: true
+                      - column:
+                          name: especialidade
+                          type: varchar(100)
+                          constraints:
+                            nullable: false
+                - createTable:
+                    tableName: assistentes
+                    columns:
+                      - column:
+                          name: id
+                          type: bigint
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                            foreignKeyName: fk_usuario_assistente
+                            references: usuarios(id)
+                      - column:
+                          name: id_medico
+                          type: bigint
+                          constraints:
+                            nullable: false
+                            foreignKeyName: fk_medico_assistente
+                            references: medicos(id)
+                - createTable:
+                    tableName: pacientes
+                    columns:
+                      - column:
+                          name: id
+                          type: bigint
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                            foreignKeyName: fk_usuario_paciente
+                            references: usuarios(id)
+                      - column:
+                          name: cpf
+                          type: varchar(11)
+                          constraints:
+                            nullable: false
+                            unique: true
+                - createTable:
+                    tableName: enderecos
+                    columns:
+                      - column:
+                          name: id
+                          type: bigint
+                          autoIncrement: true
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                      - column:
+                          name: logradouro
+                          type: varchar(255)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: bairro
+                          type: varchar(255)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: numero
+                          type: varchar(10)
+                      - column:
+                          name: complemento
+                          type: varchar(255)
+                      - column:
+                          name: cidade
+                          type: varchar(255)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: uf
+                          type: varchar(2)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: cep
+                          type: varchar(9)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: data_cadastro
+                          type: datetime
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: data_exclusao
+                          type: datetime
+                      - column:
+                          name: id_usuario
+                          type: bigint
+                          constraints:
+                            nullable: false
+                            foreignKeyName: fk_usuario_endereco
+                            references: usuarios(id)
+                - createTable:
+                    tableName: emails
+                    columns:
+                      - column:
+                          name: id
+                          type: bigint
+                          autoIncrement: true
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                      - column:
+                          name: email
+                          type: varchar(255)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: data_cadastro
+                          type: datetime
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: data_exclusao
+                          type: datetime
+                      - column:
+                          name: id_usuario
+                          type: bigint
+                          constraints:
+                            nullable: false
+                            foreignKeyName: fk_usuario_email
+                            references: usuarios(id)
+                - createTable:
+                    tableName: telefones
+                    columns:
+                      - column:
+                          name: id
+                          type: bigint
+                          autoIncrement: true
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                      - column:
+                          name: telefone
+                          type: varchar(11)
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: data_cadastro
+                          type: datetime
+                          constraints:
+                            nullable: false
+                      - column:
+                          name: data_exclusao
+                          type: datetime
+                      - column:
+                          name: id_usuario
+                          type: bigint
+                          constraints:
+                            nullable: false
+                            foreignKeyName: fk_usuario_telefone
+                            references: usuarios(id)

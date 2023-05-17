@@ -75,8 +75,25 @@ databaseChangeLog:
                             nullable: false
                             foreignKeyName: fk_usuario_assistente
                             references: usuarios(id)
+                - createTable:
+                    tableName: assistente_medico
+                    columns:
                       - column:
-                          name: id_medico
+                          name: id
+                          type: bigint
+                          autoIncrement: true
+                          constraints:
+                            primaryKey: true
+                            nullable: false
+                      - column:
+                          name: assistente_id
+                          type: bigint
+                          constraints:
+                            nullable: false
+                            foreignKeyName: fk_assistente_medico
+                            references: assistentes(id)
+                      - column:
+                          name: medico_id
                           type: bigint
                           constraints:
                             nullable: false
@@ -149,7 +166,7 @@ databaseChangeLog:
                           name: data_exclusao
                           type: datetime
                       - column:
-                          name: id_usuario
+                          name: usuario_id
                           type: bigint
                           constraints:
                             nullable: false
@@ -179,7 +196,7 @@ databaseChangeLog:
                           name: data_exclusao
                           type: datetime
                       - column:
-                          name: id_usuario
+                          name: usuario_id
                           type: bigint
                           constraints:
                             nullable: false
@@ -209,7 +226,7 @@ databaseChangeLog:
                           name: data_exclusao
                           type: datetime
                       - column:
-                          name: id_usuario
+                          name: usuario_id
                           type: bigint
                           constraints:
                             nullable: false

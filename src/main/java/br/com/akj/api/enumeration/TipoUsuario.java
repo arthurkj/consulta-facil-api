@@ -14,4 +14,5 @@ public enum TipoUsuario {
     PACIENTE("ROLE_PACIENTE");
 
     private final String role;
+
 }

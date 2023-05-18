@@ -12,10 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity(name = "Telefone")
 @Table(name = "telefones")
 @Where(clause = "data_exclusao IS NULL")
+@Getter
+@Setter
 public class TelefoneEntity {
 
     @Id

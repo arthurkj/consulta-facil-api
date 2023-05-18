@@ -8,16 +8,16 @@ import java.util.List;
 
 import br.com.akj.api.exception.AbstractErrorException;
 
-public record ErrorDTO(LocalDateTime timestamp, String message, String code, List<ErrorMessage> errors, String spanId) {
+public record ErrorDTO(LocalDateTime timestamp, String message, String code, List<ErrorMessage> errors) {
 
     private static final String ERRO_INTERNO_MESSAGE = "Erro interno.";
 
-    public ErrorDTO(final Exception exception, final String spanId) {
+    public ErrorDTO(final Exception exception) {
         this(LocalDateTime.now(), ERRO_INTERNO_MESSAGE, ERRO_INTERNO.getCode(),
-            singletonList(new ErrorMessage(exception.getMessage())), spanId);
+            singletonList(new ErrorMessage(exception.getMessage())));
     }
 
-    public ErrorDTO(final AbstractErrorException exception, final String spanId) {
-        this(LocalDateTime.now(), exception.getMessage(), exception.getCode(), exception.getErrors(), spanId);
+    public ErrorDTO(final AbstractErrorException exception) {
+        this(LocalDateTime.now(), exception.getReason(), exception.getCode(), exception.getErrors());
     }
 }

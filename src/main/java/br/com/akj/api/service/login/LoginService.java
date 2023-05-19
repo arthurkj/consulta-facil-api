@@ -1,4 +1,4 @@
-package br.com.akj.api.service.seguranca;
+package br.com.akj.api.service.login;
 
 import static br.com.akj.api.errors.Error.CREDENCIAIS_INVALIDAS;
 
@@ -14,6 +14,7 @@ import br.com.akj.api.dto.seguranca.LoginResponse;
 import br.com.akj.api.entity.UsuarioEntity;
 import br.com.akj.api.exception.AuthenticationErrorException;
 import br.com.akj.api.helper.MessageHelper;
+import br.com.akj.api.service.seguranca.TokenAutenticacaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

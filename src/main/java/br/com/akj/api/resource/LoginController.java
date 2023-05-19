@@ -7,26 +7,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.akj.api.dto.seguranca.BuscarUsuarioLogadoResponse;
 import br.com.akj.api.dto.seguranca.LoginRequest;
 import br.com.akj.api.dto.seguranca.LoginResponse;
-import br.com.akj.api.service.seguranca.LoginService;
+import br.com.akj.api.service.login.BuscaUsuarioLogadoService;
+import br.com.akj.api.service.login.LoginService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/v1/auth")
 @RequiredArgsConstructor
-public class AutenticacaoController {
+public class LoginController {
 
     private final LoginService loginService;
+    private final BuscaUsuarioLogadoService buscaUsuarioLogadoService;
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> realizarLogin(@RequestBody @Valid final LoginRequest request) {
         return ResponseEntity.ok(loginService.realizar(request));
     }
 
-    @GetMapping("/test")
-    public String aa() {
-        return "Hello world";
+    @GetMapping
+    public ResponseEntity<BuscarUsuarioLogadoResponse> buscarUsuarioLogado() {
+        return ResponseEntity.ok(buscaUsuarioLogadoService.buscar());
     }
 }

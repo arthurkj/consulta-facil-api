@@ -232,3 +232,18 @@ databaseChangeLog:
                             nullable: false
                             foreignKeyName: fk_usuario_telefone
                             references: usuarios(id)
+  - changeSet:
+      id: '2'
+      author: arthur.juchem
+      changes:
+        - createTable:
+            tableName: admins
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: fk_usuario_admin
+                    references: usuarios(id)

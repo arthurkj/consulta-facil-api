@@ -10,11 +10,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import br.com.akj.api.service.seguranca.AutenticacaoUsuarioService;
 import br.com.akj.api.service.seguranca.TokenAutenticacaoService;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -30,23 +30,30 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private final TokenAutenticacaoService tokenAutenticacaoService;
     private final AutenticacaoUsuarioService autenticacaoUsuarioService;
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
     @Override
     protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
-        final FilterChain filterChain) throws ServletException, IOException {
+        final FilterChain filterChain) {
         String tokenJWT = recuperarToken(request);
 
-        if (tokenJWT != null) {
-            final String login = tokenAutenticacaoService.extrairUsuario(tokenJWT);
-            final UserDetails usuario = autenticacaoUsuarioService.loadUserByUsername(login);
+        try {
+            if (tokenJWT != null) {
+                final String login = tokenAutenticacaoService.extrairUsuario(tokenJWT);
+                final UserDetails usuario = autenticacaoUsuarioService.loadUserByUsername(login);
 
-            final Authentication authentication = new UsernamePasswordAuthenticationToken(usuario, null,
-                usuario.getAuthorities());
+                final Authentication authentication = new UsernamePasswordAuthenticationToken(usuario, null,
+                    usuario.getAuthorities());
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+
+            filterChain.doFilter(request, response);
+        } catch (final Exception exception) {
+            log.debug("Erro ao verificar token de autenticação: {}", exception.getMessage());
+
+            handlerExceptionResolver.resolveException(request, response, null, exception);
         }
-
-        filterChain.doFilter(request, response);
     }
 
     private String recuperarToken(final HttpServletRequest request) {

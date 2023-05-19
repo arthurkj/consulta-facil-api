@@ -4,6 +4,7 @@ import static br.com.akj.api.errors.Error.CREDENCIAIS_INVALIDAS;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,9 @@ public class LoginService {
             authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(request.login(), request.senha()));
 
-        } catch (final BadCredentialsException e) {
+        } catch (final BadCredentialsException | InternalAuthenticationServiceException exception) {
+            log.debug("Erro ao realizar login: {}", exception.getMessage());
+
             throw new AuthenticationErrorException(CREDENCIAIS_INVALIDAS, messageHelper.get(CREDENCIAIS_INVALIDAS));
         }
 

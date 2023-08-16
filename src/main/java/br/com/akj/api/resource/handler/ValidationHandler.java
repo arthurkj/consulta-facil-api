@@ -7,7 +7,6 @@ import static br.com.akj.api.errors.Error.RECURSO_NAO_ENCONTRADO;
 import static br.com.akj.api.errors.Error.USUARIO_SEM_PERMISSAO;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +14,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import br.com.akj.api.errors.Error;
@@ -29,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@ControllerAdvice
+@RestControllerAdvice
 @RequiredArgsConstructor
 @Component
 public class ValidationHandler {

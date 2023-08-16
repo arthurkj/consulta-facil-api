@@ -13,14 +13,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name = "Endereco")
 @Table(name = "enderecos")
 @Where(clause = "data_exclusao IS NULL")
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = {"logradouro", "bairro", "numero", "complemento", "cidade", "uf", "cep"})
 public class EnderecoEntity {
 
     @Id

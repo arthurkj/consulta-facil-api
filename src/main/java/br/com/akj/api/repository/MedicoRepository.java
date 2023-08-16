@@ -11,4 +11,6 @@ public interface MedicoRepository extends CrudRepository<MedicoEntity, Long> {
     @Modifying
     @Query("UPDATE Medico m SET dataExclusao = CURRENT_DATE WHERE m = :medico")
     void delete(final MedicoEntity medico);
+
+    boolean existsByCrm(final String crm);
 }

@@ -13,5 +13,7 @@ public interface UsuarioRepository extends CrudRepository<UsuarioEntity, Long> {
     @Query("UPDATE Usuario u SET dataExclusao = CURRENT_DATE WHERE u = :usuario")
     void delete(final UsuarioEntity usuario);
 
-    UserDetails findByLogin(String login);
+    UserDetails findByLogin(final String login);
+
+    boolean existsByLogin(final String login);
 }

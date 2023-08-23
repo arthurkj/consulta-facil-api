@@ -2,6 +2,7 @@ package br.com.akj.api.validator.cadastro.medico;
 
 import static br.com.akj.api.errors.Error.CRM_EXISTENTE_CADASTRO_MEDICO;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.com.akj.api.dto.medico.CadastroMedicoRequest;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+@Order(1)
 public class CrmUnicoCadastroMedicoValidator implements CadastroMedicoValidator {
 
     private final MedicoRepository medicoRepository;

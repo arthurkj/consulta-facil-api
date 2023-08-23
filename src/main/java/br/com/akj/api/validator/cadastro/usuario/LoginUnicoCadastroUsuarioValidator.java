@@ -2,6 +2,7 @@ package br.com.akj.api.validator.cadastro.usuario;
 
 import static br.com.akj.api.errors.Error.LOGIN_EXISTENTE_CADASTRO_USUARIO;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.com.akj.api.dto.usuario.CadastroUsuarioRequest;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+@Order(1)
 public class LoginUnicoCadastroUsuarioValidator implements CadastroUsuarioValidator {
 
     private final UsuarioRepository usuarioRepository;

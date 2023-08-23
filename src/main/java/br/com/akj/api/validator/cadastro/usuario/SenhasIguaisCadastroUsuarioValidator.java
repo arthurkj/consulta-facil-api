@@ -3,6 +3,7 @@ package br.com.akj.api.validator.cadastro.usuario;
 import static br.com.akj.api.errors.Error.SENHA_DIFERENTES_CADASTRO_USUARIO;
 import static java.lang.Boolean.FALSE;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.com.akj.api.dto.usuario.CadastroUsuarioRequest;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+@Order(2)
 public class SenhasIguaisCadastroUsuarioValidator implements CadastroUsuarioValidator {
 
     private final MessageHelper messageHelper;

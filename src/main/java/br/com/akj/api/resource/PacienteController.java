@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.akj.api.dto.medico.CadastroMedicoRequest;
-import br.com.akj.api.service.medico.CadastroMedicoService;
+import br.com.akj.api.dto.paciente.CadastroPacienteRequest;
+import br.com.akj.api.service.paciente.CadastroPacienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/medicos")
-public class MedicoController {
+@RequestMapping("/v1/pacientes")
+public class PacienteController {
 
-    private final CadastroMedicoService cadastroMedicoService;
+    private final CadastroPacienteService cadastroPacienteService;
 
     @PostMapping
-    public ResponseEntity<Long> cadastrar(final @Valid @RequestBody CadastroMedicoRequest request) {
-        return ResponseEntity.ok(cadastroMedicoService.realizar(request));
+    public ResponseEntity<Object> cadastrar(final @Valid @RequestBody CadastroPacienteRequest request) {
+        return ResponseEntity.ok(cadastroPacienteService.realizar(request));
     }
 }

@@ -31,7 +31,7 @@ public class SecurityConfiguration {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeHttpRequests()
             .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
-            .requestMatchers(HttpMethod.POST, "/v1/medico").permitAll()
+            .requestMatchers(HttpMethod.POST, "/v1/medicos", "/v1/pacientes").permitAll()
             .requestMatchers( "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**").permitAll()
             .anyRequest().authenticated()
             .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

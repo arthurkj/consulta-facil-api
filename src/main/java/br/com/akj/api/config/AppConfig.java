@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+import br.com.caelum.stella.validation.CPFValidator;
+
 @Configuration
 public class AppConfig {
 
@@ -16,9 +18,13 @@ public class AppConfig {
     MessageSource messageSource() {
         ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
         source.setBasenames("classpath:i18n/messages");
-        source.setCacheSeconds(3600);
         source.setDefaultEncoding("UTF-8");
         source.setDefaultLocale(PT_BR);
         return source;
+    }
+
+    @Bean
+    public CPFValidator stellaCpfvalidator() {
+        return new CPFValidator();
     }
 }

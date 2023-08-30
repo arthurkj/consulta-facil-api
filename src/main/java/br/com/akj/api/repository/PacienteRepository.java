@@ -11,4 +11,6 @@ public interface PacienteRepository extends CrudRepository<PacienteEntity, Long>
     @Modifying
     @Query("UPDATE Paciente p SET dataExclusao = CURRENT_DATE WHERE p = :paciente")
     void delete(final PacienteEntity paciente);
+
+    boolean existsByCpf(final String cpf);
 }

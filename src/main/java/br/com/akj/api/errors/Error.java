@@ -12,6 +12,8 @@ import static br.com.akj.api.errors.ErrorCode.CODE_0009;
 import static br.com.akj.api.errors.ErrorCode.CODE_0010;
 import static br.com.akj.api.errors.ErrorCode.CODE_0011;
 import static br.com.akj.api.errors.ErrorCode.CODE_0012;
+import static br.com.akj.api.errors.ErrorCode.CODE_0013;
+import static br.com.akj.api.errors.ErrorCode.CODE_0014;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
@@ -39,7 +41,9 @@ public enum Error {
     PARAMETROS_INVALIDOS("parametros.invalidos", CODE_0009.getCode(), BAD_REQUEST),
     CRM_EXISTENTE_CADASTRO_MEDICO("crm.existente.cadastro.medico", CODE_0010.getCode(), BAD_REQUEST),
     LOGIN_EXISTENTE_CADASTRO_USUARIO("login.existente.cadastro.usuario", CODE_0011.getCode(), BAD_REQUEST),
-    SENHA_DIFERENTES_CADASTRO_USUARIO("senhas.diferentes.cadastro.usuario", CODE_0012.getCode(), BAD_REQUEST);
+    SENHA_DIFERENTES_CADASTRO_USUARIO("senhas.diferentes.cadastro.usuario", CODE_0012.getCode(), BAD_REQUEST),
+    CPF_EXISTENTE_CADASTRO_USUARIO("cpf.existente.cadastro.usuario", CODE_0013.getCode(), BAD_REQUEST),
+    CPF_INVALIDO("cpf.invalido", CODE_0014.getCode(), BAD_REQUEST);
 
     private final String messageKey;
     private final String code;
